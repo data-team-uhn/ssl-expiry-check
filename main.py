@@ -24,4 +24,7 @@ def getCertificateDate(certificate, field_name):
 ssl_cert = getSSLCert(args.host)
 expiry_date = getCertificateDate(ssl_cert, 'notAfter')
 
-print("The certificate will expire on {}".format(expiry_date))
+timedelta_until_expiry = expiry_date - datetime.datetime.now()
+days_until_expiry = timedelta_until_expiry.days
+
+print("The certificate will expire in {} days".format(days_until_expiry))
